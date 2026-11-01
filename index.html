@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fa">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="独立成长">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>个人独立成长系统</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#20242b;--muted:#7b8491;--line:#e9ecf0;--accent:#426b58;--soft:#eaf1ed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;padding:env(safe-area-inset-top) 0 calc(78px + env(safe-area-inset-bottom));}
+header{padding:22px 20px 14px;max-width:680px;margin:auto}h1{font-size:24px;margin:4px 0 6px;font-weight:750}h2{font-size:18px;margin:0 0 14px}h3{font-size:15px;margin:0 0 8px}.sub{font-size:13px;color:var(--muted)}
+main{max-width:680px;margin:auto;padding:0 16px}.page{display:none}.page.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 8px #17202a05}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.pill{background:var(--soft);color:var(--accent);padding:6px 10px;border-radius:99px;font-size:12px}
+.progress{height:8px;background:#edf0f2;border-radius:9px;overflow:hidden;margin:12px 0 6px}.bar{height:100%;background:var(--accent);width:0%;border-radius:9px;transition:width .2s}
+.task{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}.task:last-child{border:0}.task input{width:20px;height:20px;accent-color:var(--accent);margin:1px 0 0}.task strong{display:block;font-size:14px}.task small{display:block;color:var(--muted);font-size:12px;margin-top:4px;line-height:1.5}
+button{border:0;border-radius:12px;background:var(--accent);color:white;padding:12px 15px;font-size:14px;font-weight:650}button.secondary{background:#eef1f3;color:#39434d}button:active{opacity:.75}
+.stage{padding:13px 0;border-bottom:1px solid var(--line)}.stage:last-child{border:0}.stage b{font-size:14px}.stage p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+textarea,input[type=text],input[type=number]{width:100%;border:1px solid var(--line);background:#fafbfc;border-radius:11px;padding:12px;font:inherit;font-size:14px;color:var(--ink);margin:7px 0 12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(16px);border-top:1px solid var(--line);display:flex;justify-content:center;padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:5}
+nav button{background:transparent;color:var(--muted);padding:8px 0;flex:1;max-width:150px;font-size:11px;font-weight:500}nav button.active{color:var(--accent);font-weight:750}nav span{display:block;font-size:19px;margin-bottom:3px}
+.note{font-size:12px;color:var(--muted);line-height:1.6}.big{font-size:30px;font-weight:750;letter-spacing:-1px}.empty{color:var(--muted);font-size:13px;padding:12px 0}
+</style>
+</head>
+<body>
+<header><div class="sub" id="todayDate"></div><h1>个人独立成长系统</h1><div class="sub">把人生的主动权，一点点拿回来。</div></header>
+<main>
+<section class="page active" id="today">
+ <div class="card">
+  <div class="row"><div><div class="sub">今天的成长进度</div><div class="big" id="percent">0%</div></div><div class="pill" id="doneLabel">0 / 5 项完成</div></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="note">目标是持续，不是每天满分。忙碌时完成一项也算前进。</div>
+ </div>
+ <div class="card"><div class="row"><h2>今日任务</h2><span class="pill">约 50 分钟</span></div><div id="tasks"></div></div>
+ <div class="card"><h3>今日一句复盘</h3><textarea id="dailyNote" rows="3" placeholder="今天我做了什么，让自己更独立一点？"></textarea><button onclick="saveNote()">保存复盘</button></div>
+</section>
+<section class="page" id="plan">
+ <div class="card"><h2>长期成长路线</h2><p class="note">先建立安全垫，再提升能力与选择权。每个阶段按现实情况推进，不必赶进度。</p>
+ <div class="stage"><b>0–6 个月｜建立底盘</b><p>梳理收支与资产负债；建立应急储备；恢复稳定睡眠和基础运动；整理现有技术能力与项目成果。</p></div>
+ <div class="stage"><b>6–18 个月｜提升职业议价能力</b><p>选择一个有市场需求的技术方向深入；积累可展示的作品；定期了解岗位和薪资，不把收入押在单一雇主上。</p></div>
+ <div class="stage"><b>18–36 个月｜尝试第二收入</b><p>从低成本、可验证的小项目开始；先验证真实需求和付费意愿，不因焦虑盲目辞职或投入大额资金。</p></div>
+ <div class="stage"><b>3–5 年｜扩大选择空间</b><p>提高储蓄与投资纪律；逐步形成多元收入；评估工作、城市、居住方式是否仍适合自己。</p></div>
+ <div class="stage"><b>5–10 年｜争取长期自主</b><p>让资产、技能和生活成本共同支撑选择权。目标不是拒绝工作，而是不再只能依赖一份工作。</p></div>
+ </div>
+ <div class="card"><h3>六个独立维度</h3><p class="note">经济独立：有储备、有规划；职业独立：能力可迁移；生活独立：能照顾自己；思想独立：能判断信息；精神独立：不被外界评价牵着走；选择独立：有能力说“不”。</p></div>
+</section>
+<section class="page" id="records">
+ <div class="card"><h2>成长记录</h2><div class="row"><div><div class="sub">累计完成任务</div><div class="big" id="totalDone">0</div></div><div><div class="sub">最近 7 天打卡</div><div class="big" id="daysDone">0</div></div></div></div>
+ <div class="card"><h3>最近 7 天</h3><div id="week"></div></div>
+ <div class="card"><h3>每周复盘提示</h3><p class="note">1. 本周哪件事真正增加了我的能力或选择权？<br>2. 哪些时间被无意识消耗？<br>3. 下周只选一件最重要的事推进。</p><textarea id="weeklyNote" rows="4" placeholder="写下本周复盘……"></textarea><button onclick="saveWeekly()">保存周复盘</button></div>
+</section>
+<section class="page" id="mine">
+ <div class="card"><h2>我的原则</h2><textarea id="principles" rows="5">不为证明自己而消费。
+不因焦虑做重大决定。
+先建立安全垫，再追求高收益。
+持续积累可迁移的能力。
+成长计划服务于生活，不替代生活。</textarea><button onclick="savePrinciples()">保存原则</button></div>
+ <div class="card"><h3>每日投入时间</h3><div class="row"><span class="note">目标分钟数</span><input id="minutes" type="number" min="10" max="120" value="50" style="width:90px"></div><button onclick="saveMinutes()">保存设置</button></div>
+ <div class="card"><h3>数据与隐私</h3><p class="note">打卡、复盘和设置仅保存在当前 iPhone 浏览器本地。清除 Safari 网站数据、删除网页数据或更换设备可能导致记录丢失。建议定期在复盘区自行备份重要内容。</p></div>
+</section>
+</main>
+<nav>
+<button class="active" data-page="today"><span>☀️</span>今日</button>
+<button data-page="plan"><span>🧭</span>成长计划</button>
+<button data-page="records"><span>📈</span>记录</button>
+<button data-page="mine"><span>⚙️</span>我的</button>
+</nav>
+<script src="app.js"></script>
+</body></html>
